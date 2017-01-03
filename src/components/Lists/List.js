@@ -27,7 +27,10 @@ const ListTodo = (props) => {
               source={leftIconSrc}
               style={styles.leftButton}
               width={20} height={20} />
-            <Text style={styles.text}>{todo.text}</Text>
+            <Text numberOfLines={1}
+              style={styles.text}>
+                {todo.text}
+            </Text>
             <ButtonIcon onPress={rightOnPress}
               source={rightIconSrc}
               style={styles.rightButton}
