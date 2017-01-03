@@ -34,7 +34,7 @@ const AddTodo = (props) => {
 	}
 
 	return (
-		<View style={style}>
+		<View style={styles.container}>
 			<TextInput style={styles.textInput}
 				autoCorrect={false}
 				placeholder='Add an item...'
@@ -46,15 +46,18 @@ const AddTodo = (props) => {
 			<ButtonIcon onPress={_onSubmitEditing}
 				source={plusIcon}
 				style={styles.plusButton}
-				width={20} height={20} />
+				width={30} height={30} />
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 0,
+	},
 	plusButton: {
-		marginRight: 20,
-		marginTop: -30,
+		marginRight: 15,
+		marginTop: -35,
 		alignItems: 'flex-end',
 	},
 	textInput: {
