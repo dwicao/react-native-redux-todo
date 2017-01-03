@@ -13,7 +13,7 @@ import iconStar from '../../icons/star.png';
 import iconUnStar from '../../icons/unstar.png';
 import iconDelete from '../../icons/remove.png';
 
-const ActiveTodo = (props) => {
+const TodoList = (props) => {
   const {
     todos,
     actions,
@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
   },
 });
 
-ActiveTodo.propTypes = {
+TodoList.propTypes = {
   style: PropTypes.number,
   todos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
-export default ActiveTodo;
+export default TodoList;

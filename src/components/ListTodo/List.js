@@ -9,7 +9,7 @@ import {
 
 import ButtonIcon from '../Buttons/ButtonIcon';
 
-const ListTodo = (props) => {
+const List = (props) => {
   const {
     todos,
     actions,
@@ -24,40 +24,48 @@ const ListTodo = (props) => {
     textOnPress,
   } = props;
 
+  const _renderList = (todo, index) => {
+    const doneOrNot = (todo.isDone) ? leftActiveIcon : leftUnactiveIcon;
+    const starredOrNot = (todo.isStarred) ? rightActiveIcon : rightUnactiveIcon;
+    const textDoneOrNot = (todo.isDone) ? styles.textDone : styles.textNotDone;
+    
+    const deleteOrStar = () => {
+      if (todo.isDone) {
+        return <ButtonIcon onPress={onDelete(todo.id)}
+                source={iconDelete}
+                style={styles.rightButton}
+                width={20} height={20} />
+      } else {
+        return <ButtonIcon onPress={rightOnPress(todo.id)}
+                source={starredOrNot}
+                style={styles.rightButton}
+                width={20} height={20} />
+      }
+    }
+
+    return (
+      <View key={index} style={styles.row}>
+        <ButtonIcon onPress={leftOnPress(todo.id)}
+          source={doneOrNot}
+          style={styles.leftButton}
+          width={20} height={20} />
+        <TouchableOpacity onPress={textOnPress(todo.id)}
+          style={styles.textButton}
+          activeOpacity={0.7}>
+          <Text numberOfLines={1}
+            style={textDoneOrNot}>
+              { todo.text }
+          </Text>
+        </TouchableOpacity>
+        { deleteOrStar() }
+      </View>
+    );
+  }
+
   return (
       <ScrollView style={styles.scroll}
         showsVerticalScrollIndicator={false}>
-        {todos.map((todo, i) => {
-          const doneOrNot = (todo.isDone) ? leftActiveIcon : leftUnactiveIcon;
-          const starredOrNot = (todo.isStarred) ? rightActiveIcon : rightUnactiveIcon;
-          return (
-            <View key={i} style={styles.row}>
-              <ButtonIcon onPress={leftOnPress(todo.id)}
-                source={doneOrNot}
-                style={styles.leftButton}
-                width={20} height={20} />
-              <TouchableOpacity onPress={textOnPress(todo.id)}
-                style={styles.textButton}
-                activeOpacity={0.7}>
-                <Text numberOfLines={1}
-                  style={styles.text}>
-                    {todo.text}
-                </Text>
-              </TouchableOpacity>
-              {todo.isDone ? 
-                  <ButtonIcon onPress={onDelete(todo.id)}
-                    source={iconDelete}
-                    style={styles.rightButton}
-                    width={20} height={20} />
-                :
-                  <ButtonIcon onPress={rightOnPress(todo.id)}
-                    source={starredOrNot}
-                    style={styles.rightButton}
-                    width={20} height={20} />
-              }
-            </View>
-          );
-        })}
+        { todos.map(_renderList) }
       </ScrollView>
   );
 };
@@ -69,8 +77,12 @@ const styles = StyleSheet.create({
   textButton: {
     flex: 1,
   },
-  text: {
+  textNotDone: {
     color: 'white',
+  },
+  textDone: {
+    color: 'white',
+    textDecorationLine: 'line-through',
   },
   leftButton: {
     marginHorizontal: 10,
@@ -90,7 +102,7 @@ const styles = StyleSheet.create({
   },
 });
 
-ListTodo.propTypes = {
+List.propTypes = {
   style: PropTypes.number,
   todos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
@@ -105,4 +117,4 @@ ListTodo.propTypes = {
   textOnPress: PropTypes.func.isRequired,
 };
 
-export default ListTodo;
+export default List;

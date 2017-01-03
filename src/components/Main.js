@@ -11,7 +11,7 @@ import {
 
 import Wallpaper from './Wallpaper';
 import AddTodo from './AddTodo';
-import ActiveTodo from './Lists/ActiveTodo';
+import ListTodo from './ListTodo';
 
 class Main extends Component {
 	render() {
@@ -21,7 +21,7 @@ class Main extends Component {
 					<StatusBar translucent={true} />
 					<Wallpaper>
 						<AddTodo {...this.props}/>
-						<ActiveTodo {...this.props} />
+						<ListTodo {...this.props} />
 					</Wallpaper>
 				</View>
 			</View>
