@@ -27,6 +27,15 @@ const todoReducer = (state = [], action) => {
         return Object.assign({}, todo, { text: action.text });
       });
 
+    case types.TOGGLE_STAR_TODO:
+      return state.map(todo => {
+        if(todo.id !== action.id) {
+          return todo;
+        }
+        
+        return Object.assign({}, todo, { isStarred: !todo.isStarred });
+      });
+
     case types.TOGGLE_EDIT_TODO:
       return state.map(todo => {
         if(todo.id !== action.id) {

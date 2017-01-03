@@ -7,7 +7,9 @@ import {
 } from 'react-native';
 
 import List from './List';
+import iconCheck from '../../icons/check.png';
 import iconUncheck from '../../icons/uncheck.png';
+import iconStar from '../../icons/star.png';
 import iconUnStar from '../../icons/unstar.png';
 
 const ActiveTodo = (props) => {
@@ -16,21 +18,28 @@ const ActiveTodo = (props) => {
     actions,
   } = props;
 
-  const _leftOnPress = () => {
-
+  const _leftOnPress = (id) => (event) => {
+    actions.toggleTodo(id);
   }
 
-  const _rightOnPress = () => {
+  const _textOnPress = (id) => (event) => {
+    actions.toggleEditTodo(id);
+  }
 
+  const _rightOnPress = (id) => (event) => {
+    actions.toggleStarTodo(id);
   }
 
   return (
     <View style={styles.container}>
       <List
         leftOnPress={_leftOnPress}
-        leftIconSrc={iconUncheck}
+        leftUnactiveIcon={iconUncheck}
+        leftActiveIcon={iconCheck}
         rightOnPress={_rightOnPress}
-        rightIconSrc={iconUnStar}
+        rightUnactiveIcon={iconUnStar}
+        rightActiveIcon={iconStar}
+        textOnPress={_textOnPress}
         {...props} />
     </View>
   );

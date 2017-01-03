@@ -10,6 +10,7 @@ export function addTodo(text) {
       id: uid(),
       isDone: false,
       isEditing: false,
+      isStarred: false,
       text
     }
   };
@@ -18,6 +19,13 @@ export function addTodo(text) {
 export function toggleTodo(id) {
   return {
     type: types.TOGGLE_TODO,
+    id
+  };
+}
+
+export function toggleStarTodo(id) {
+  return {
+    type: types.TOGGLE_STAR_TODO,
     id
   };
 }
