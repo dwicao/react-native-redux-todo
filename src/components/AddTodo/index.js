@@ -6,7 +6,8 @@ import {
 	StyleSheet,
 } from 'react-native';
 
-import PlusButton from '../Buttons/PlusButton';
+import plusIcon from '../../icons/plus.png';
+import ButtonIcon from '../Buttons/ButtonIcon';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
@@ -15,6 +16,7 @@ const AddTodo = (props) => {
 	const {
 		todos,
 		actions,
+		style,
 	} = props;
 
 	let textInput;
@@ -32,7 +34,7 @@ const AddTodo = (props) => {
 	}
 
 	return (
-		<View style={styles.container}>
+		<View style={style}>
 			<TextInput style={styles.textInput}
 				autoCorrect={false}
 				placeholder='Add an item...'
@@ -41,20 +43,18 @@ const AddTodo = (props) => {
 				onChangeText={_onChangeText}
 				onSubmitEditing={_onSubmitEditing}
 				ref={el => textInput = el} />
-			<PlusButton style={styles.plusButton}
-				onSubmit={_onSubmitEditing}
-				{...props} />
+			<ButtonIcon onPress={_onSubmitEditing}
+				source={plusIcon}
+				style={styles.plusButton}
+				width={20} height={20} />
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
 	plusButton: {
-		marginTop: -30,
 		marginRight: 20,
+		marginTop: -30,
 		alignItems: 'flex-end',
 	},
 	textInput: {
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 10,
 		paddingRight: 35,
 		color: 'white',
+		borderRadius: 2,
 		backgroundColor: 'rgba(0, 0, 0, 0.3)',
 	},
 });

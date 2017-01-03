@@ -11,6 +11,7 @@ import {
 
 import Wallpaper from './Wallpaper';
 import AddTodo from './AddTodo';
+import ListTodo from './ListTodo';
 
 class Main extends Component {
 	render() {
@@ -19,7 +20,8 @@ class Main extends Component {
 				<View style={styles.container}>
 					<StatusBar translucent={true} />
 					<Wallpaper>
-						<AddTodo {...this.props}/>
+						<AddTodo style={styles.addTodo} {...this.props}/>
+						<ListTodo style={styles.list} {...this.props} />
 					</Wallpaper>
 				</View>
 			</View>
@@ -35,6 +37,14 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		marginTop: 20,
+	},
+	addTodo: {
+		flex: 0,
+	},
+	list: {
+		flex: 1,
+		marginTop: 20,
+		marginBottom: 10,
 	},
 });
 
