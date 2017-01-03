@@ -6,6 +6,8 @@ import {
 	StyleSheet,
 } from 'react-native';
 
+import PlusButton from '../Buttons/PlusButton';
+
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 
@@ -15,14 +17,14 @@ const AddTodo = (props) => {
 		actions,
 	} = props;
 
-	let _textInput;
+	let textInput;
 	let textValue = '';
 
 	const _onSubmitEditing = () => {
 		if (textValue.length > 0) {
 			actions.addTodo(textValue);
 		}
-		_textInput.clear();
+		textInput.clear();
 	}
 
 	const _onChangeText = (text) => {
@@ -34,11 +36,14 @@ const AddTodo = (props) => {
 			<TextInput style={styles.textInput}
 				autoCorrect={false}
 				placeholder='Add an item...'
-				placeholderTextColor={'gray'}
+				placeholderTextColor='gray'
 				returnKeyType='done'
 				onChangeText={_onChangeText}
 				onSubmitEditing={_onSubmitEditing}
-				ref={el => _textInput = el} />
+				ref={el => textInput = el} />
+			<PlusButton style={styles.plusButton}
+				onSubmit={_onSubmitEditing}
+				{...props} />
 		</View>
 	);
 };
@@ -47,12 +52,18 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
+	plusButton: {
+		marginTop: -30,
+		marginRight: 20,
+		alignItems: 'flex-end',
+	},
 	textInput: {
 		alignSelf: 'center',
 		height: 40,
 		width: DEVICE_WIDTH - 20,
 		marginTop: 10,
 		paddingLeft: 10,
+		paddingRight: 35,
 		color: 'white',
 		backgroundColor: 'rgba(0, 0, 0, 0.3)',
 	},
