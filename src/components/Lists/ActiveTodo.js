@@ -11,6 +11,7 @@ import iconCheck from '../../icons/check.png';
 import iconUncheck from '../../icons/uncheck.png';
 import iconStar from '../../icons/star.png';
 import iconUnStar from '../../icons/unstar.png';
+import iconDelete from '../../icons/remove.png';
 
 const ActiveTodo = (props) => {
   const {
@@ -18,17 +19,10 @@ const ActiveTodo = (props) => {
     actions,
   } = props;
 
-  const _leftOnPress = (id) => (event) => {
-    actions.toggleTodo(id);
-  }
-
-  const _textOnPress = (id) => (event) => {
-    actions.toggleEditTodo(id);
-  }
-
-  const _rightOnPress = (id) => (event) => {
-    actions.toggleStarTodo(id);
-  }
+  const _leftOnPress = (id) => (event) => actions.toggleTodo(id);
+  const _textOnPress = (id) => (event) => actions.toggleEditTodo(id);
+  const _rightOnPress = (id) => (event) => actions.toggleStarTodo(id);
+  const _onDelete = (id) => (event) => actions.removeTodo(id);
 
   return (
     <View style={styles.container}>
@@ -40,6 +34,8 @@ const ActiveTodo = (props) => {
         rightUnactiveIcon={iconUnStar}
         rightActiveIcon={iconStar}
         textOnPress={_textOnPress}
+        onDelete={_onDelete}
+        iconDelete={iconDelete}
         {...props} />
     </View>
   );

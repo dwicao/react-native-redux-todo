@@ -19,6 +19,8 @@ const ListTodo = (props) => {
     rightOnPress,
     rightUnactiveIcon,
     rightActiveIcon,
+    iconDelete,
+    onDelete,
     textOnPress,
   } = props;
 
@@ -42,10 +44,17 @@ const ListTodo = (props) => {
                     {todo.text}
                 </Text>
               </TouchableOpacity>
-              <ButtonIcon onPress={rightOnPress(todo.id)}
-                source={starredOrNot}
-                style={styles.rightButton}
-                width={20} height={20} />
+              {todo.isDone ? 
+                  <ButtonIcon onPress={onDelete(todo.id)}
+                    source={iconDelete}
+                    style={styles.rightButton}
+                    width={20} height={20} />
+                :
+                  <ButtonIcon onPress={rightOnPress(todo.id)}
+                    source={starredOrNot}
+                    style={styles.rightButton}
+                    width={20} height={20} />
+              }
             </View>
           );
         })}
@@ -91,6 +100,8 @@ ListTodo.propTypes = {
   rightOnPress: PropTypes.func.isRequired,
   rightUnactiveIcon: PropTypes.number.isRequired,
   rightActiveIcon: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  iconDelete: PropTypes.number.isRequired,
   textOnPress: PropTypes.func.isRequired,
 };
 
