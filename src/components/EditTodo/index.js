@@ -23,7 +23,7 @@ const EditTodo = props => {
 
 	const _onPress = () => {
 		actions.editTodo(id, textInput);
-		Actions.mainScreen({ype: ActionConst.RESET});
+		Actions.mainScreen({type: ActionConst.RESET});
 	}
 
 	const _onChangeText = text => textInput = text;
