@@ -19,21 +19,22 @@ const EditTodo = props => {
 		text
 	} = props;
 
-	let textInput = '';
+	let textValue = '';
 
 	const _onPress = () => {
-		actions.editTodo(id, textInput);
+		actions.editTodo(id, textValue);
 		Actions.mainScreen({type: ActionConst.RESET});
 	}
 
-	const _onChangeText = value => textInput = value;
+	const _onChangeText = value => textValue = value;
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.textInputWrapper}>
 				<TextInput style={styles.textInput}
 					onChangeText={_onChangeText}
-					ref={el => textInput = el}
+					autoCapitalize='none'
+					autoCorrect={false}
 					multiline={true}>
 						<Text style={styles.text}>{text}</Text>
 				</TextInput>
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: 'white',
+		backgroundColor: 'transparent',
 	},
 	btnWrapper: {
 		alignItems: 'flex-end',
