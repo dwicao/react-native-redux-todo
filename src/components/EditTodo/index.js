@@ -19,7 +19,7 @@ const EditTodo = props => {
 		text
 	} = props;
 
-	let textValue = '';
+	let textValue = text;
 
 	const _onPress = () => {
 		actions.editTodo(id, textValue);
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 		width: 40,
 		height: 40,
 		borderRadius: 100,
-		backgroundColor: 'rgba(255, 255, 255, 0.2)',
+		backgroundColor: 'rgba(255, 255, 255, 0.3)',
 	},
 	image: {
 		width: 40,
