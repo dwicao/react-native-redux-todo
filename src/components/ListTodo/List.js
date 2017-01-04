@@ -50,7 +50,7 @@ const List = props => {
           source={doneOrNot}
           style={styles.leftButton}
           width={25} height={25} />
-        <TouchableOpacity onPress={textOnPress(todo.id)}
+        <TouchableOpacity onPress={textOnPress(todo.id, todo.text)}
           style={styles.textButton}
           activeOpacity={0.7}>
           <Text numberOfLines={1}

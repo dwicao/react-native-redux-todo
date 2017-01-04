@@ -4,6 +4,7 @@ import {
 	StyleSheet,
 	View,
 	Text,
+	TextInput,
 	Image,
 	TouchableOpacity,
 } from 'react-native';
@@ -11,21 +12,57 @@ import {
 import backIcon from '../../icons/back.png';
 
 const EditTodo = props => {
-	const _onPress = () => Actions.mainScreen({type: ActionConst.RESET});
+	const {
+		todos,
+		actions,
+		id,
+		text
+	} = props;
+
+	let textInput = '';
+
+	const _onPress = () => {
+		actions.editTodo(id, textInput);
+		Actions.mainScreen({ype: ActionConst.RESET});
+	}
+
+	const _onChangeText = text => textInput = text;
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity onPress={_onPress}
-				activeOpacity={0.5}
-				style={styles.btn}>
-				<Image source={backIcon} style={styles.image}/>
-			</TouchableOpacity>
+			<View style={styles.textInputWrapper}>
+				<TextInput style={styles.textInput}
+					onChangeText={_onChangeText}
+					ref={el => textInput = el}
+					multiLine={true}>
+					<Text style={styles.text}>{text}</Text>
+				</TextInput>
+			</View>
+			<View style={styles.btnWrapper}>
+				<TouchableOpacity onPress={_onPress}
+					activeOpacity={0.5}
+					style={styles.btn}>
+					<Image source={backIcon} style={styles.image}/>
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
+	},
+	textInputWrapper: {
+		margin: 20,
+	},
+	textInput: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
+	text: {
+		color: 'white',
+	},
+	btnWrapper: {
 		flex: 1,
 		alignItems: 'flex-end',
 		justifyContent: 'flex-end',

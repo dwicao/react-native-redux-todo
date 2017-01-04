@@ -46,12 +46,16 @@ const TodoList = props => {
     visibilityFilter
   );
 
-  const _leftOnPress = (id) => (event) => actions.toggleTodo(id);
-  const _rightOnPress = (id) => (event) => actions.toggleStarTodo(id);
-  const _onDelete = (id) => (event) => actions.removeTodo(id);
-  const _textOnPress = (id) => (event) => {
+  const _leftOnPress = id => event => actions.toggleTodo(id);
+  const _rightOnPress = id => event => actions.toggleStarTodo(id);
+  const _onDelete = id => event => actions.removeTodo(id);
+  const _textOnPress = (id, text) => event => {
     actions.toggleEditTodo(id);
-    Actions.editScreen({type: ActionConst.RESET});
+    Actions.editScreen({
+      type: ActionConst.RESET,
+      id,
+      text,
+    });
   }
 
   return (
