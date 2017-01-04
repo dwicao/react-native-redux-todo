@@ -52,7 +52,7 @@ const TodoList = props => {
   const _textOnPress = (id, text) => event => {
     actions.toggleEditTodo(id);
     Actions.editScreen({
-      type: ActionConst.RESET,
+      type: ActionConst.PUSH,
       id,
       text,
     });

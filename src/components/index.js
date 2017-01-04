@@ -10,10 +10,12 @@ export default class App extends Component {
 	    <Router>
 	      <Scene key="root">
 	        <Scene key="mainScreen"
+	        	animation='fade'
 	        	component={MainScreen}
 	        	hideNavBar={true}
 	        	initial={true}/>
 	        <Scene key="editScreen"
+	        	animation='fade'
 	        	hideNavBar={true}
 	        	component={EditScreen}/>
 	      </Scene>
