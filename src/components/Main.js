@@ -11,6 +11,7 @@ import {
 
 import Wallpaper from './Wallpaper';
 import AddTodo from './AddTodo';
+import Visibility from './Visibility';
 import ListTodo from './ListTodo';
 
 class Main extends Component {
@@ -21,6 +22,7 @@ class Main extends Component {
 					<StatusBar translucent={true} />
 					<Wallpaper>
 						<AddTodo {...this.props}/>
+						<Visibility {...this.props} />
 						<ListTodo {...this.props} />
 					</Wallpaper>
 				</View>

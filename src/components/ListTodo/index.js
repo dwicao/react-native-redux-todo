@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Dimensions from 'Dimensions';
 import {
   ScrollView,
   StyleSheet,
@@ -13,11 +14,36 @@ import iconStar from '../../icons/star.png';
 import iconUnStar from '../../icons/unstar.png';
 import iconDelete from '../../icons/remove.png';
 
-const TodoList = (props) => {
+const TodoList = props => {
   const {
     todos,
     actions,
+    visibilityFilter,
   } = props;
+
+  const getVisibleTodos = (allTodos, whatFilter) => {
+    switch(whatFilter) {
+      case 'SHOW_ALL':
+        return allTodos;
+      case 'SHOW_COMPLETED':
+        return allTodos.filter(
+          t => t.isDone
+        );
+      case 'SHOW_ACTIVE':
+        return allTodos.filter(
+          t => !t.isDone
+        );
+      case 'SHOW_FAVORITE':
+        return allTodos.filter(
+          t => t.isStarred
+        );
+    }
+  };
+
+  const visibleTodos = getVisibleTodos(
+    todos,
+    visibilityFilter
+  );
 
   const _leftOnPress = (id) => (event) => actions.toggleTodo(id);
   const _textOnPress = (id) => (event) => actions.toggleEditTodo(id);
@@ -27,6 +53,7 @@ const TodoList = (props) => {
   return (
     <View style={styles.container}>
       <List
+        visibleTodos={visibleTodos}
         leftOnPress={_leftOnPress}
         leftUnactiveIcon={iconUncheck}
         leftActiveIcon={iconCheck}
@@ -41,10 +68,11 @@ const TodoList = (props) => {
   );
 };
 
+const DEVICE_WIDTH = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
     marginBottom: 10,
   },
 });
@@ -53,6 +81,7 @@ TodoList.propTypes = {
   style: PropTypes.number,
   todos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  visibilityFilter: PropTypes.string.isRequired,
 };
 
 export default TodoList;

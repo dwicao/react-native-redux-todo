@@ -10,9 +10,8 @@ import plusIcon from '../../icons/plus.png';
 import ButtonIcon from '../Buttons/ButtonIcon';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
-const DEVICE_HEIGHT = Dimensions.get('window').height;
 
-const AddTodo = (props) => {
+const AddTodo = props => {
 	const {
 		todos,
 		actions,
@@ -29,9 +28,7 @@ const AddTodo = (props) => {
 		textInput.clear();
 	}
 
-	const _onChangeText = (text) => {
-		textValue = text;
-	}
+	const _onChangeText = text => textValue = text;
 
 	return (
 		<View style={styles.container}>
@@ -39,6 +36,7 @@ const AddTodo = (props) => {
 				autoCorrect={false}
 				placeholder='Add an item...'
 				placeholderTextColor='gray'
+				underlineColorAndroid='transparent'
 				returnKeyType='done'
 				onChangeText={_onChangeText}
 				onSubmitEditing={_onSubmitEditing}
@@ -64,7 +62,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		height: 40,
 		width: DEVICE_WIDTH - 20,
-		marginTop: 10,
+		marginTop: 15,
 		paddingLeft: 10,
 		paddingRight: 35,
 		color: 'white',

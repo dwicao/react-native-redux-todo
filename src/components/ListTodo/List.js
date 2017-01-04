@@ -9,10 +9,11 @@ import {
 
 import ButtonIcon from '../Buttons/ButtonIcon';
 
-const List = (props) => {
+const List = props => {
   const {
     todos,
     actions,
+    visibleTodos,
     leftOnPress,
     leftUnactiveIcon,
     leftActiveIcon,
@@ -25,21 +26,21 @@ const List = (props) => {
   } = props;
 
   const _renderList = (todo, index) => {
-    const doneOrNot = (todo.isDone) ? leftActiveIcon : leftUnactiveIcon;
-    const starredOrNot = (todo.isStarred) ? rightActiveIcon : rightUnactiveIcon;
-    const textDoneOrNot = (todo.isDone) ? styles.textDone : styles.textNotDone;
+    const doneOrNot = todo.isDone ? leftActiveIcon : leftUnactiveIcon;
+    const starredOrNot = todo.isStarred ? rightActiveIcon : rightUnactiveIcon;
+    const textDoneOrNot = todo.isDone ? styles.textDone : styles.textNotDone;
     
     const deleteOrStar = () => {
       if (todo.isDone) {
         return <ButtonIcon onPress={onDelete(todo.id)}
                 source={iconDelete}
                 style={styles.rightButton}
-                width={20} height={20} />
+                width={25} height={25} />
       } else {
         return <ButtonIcon onPress={rightOnPress(todo.id)}
                 source={starredOrNot}
                 style={styles.rightButton}
-                width={20} height={20} />
+                width={25} height={25} />
       }
     }
 
@@ -48,7 +49,7 @@ const List = (props) => {
         <ButtonIcon onPress={leftOnPress(todo.id)}
           source={doneOrNot}
           style={styles.leftButton}
-          width={20} height={20} />
+          width={25} height={25} />
         <TouchableOpacity onPress={textOnPress(todo.id)}
           style={styles.textButton}
           activeOpacity={0.7}>
@@ -65,7 +66,7 @@ const List = (props) => {
   return (
       <ScrollView style={styles.scroll}
         showsVerticalScrollIndicator={false}>
-        { todos.map(_renderList) }
+        { visibleTodos.map(_renderList) }
       </ScrollView>
   );
 };
@@ -88,7 +89,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   rightButton: {
-    marginHorizontal: 10,
+    marginLeft: 5,
+    marginRight: 10,
   },
   row: {
     alignItems: 'center',
@@ -106,6 +108,7 @@ List.propTypes = {
   style: PropTypes.number,
   todos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  visibleTodos: PropTypes.array.isRequired,
   leftOnPress: PropTypes.func.isRequired,
   leftUnactiveIcon: PropTypes.number.isRequired,
   leftActiveIcon: PropTypes.number.isRequired,

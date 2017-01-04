@@ -5,7 +5,7 @@ import {
 	TouchableWithoutFeedback,
 } from 'react-native';
 
-const ButtonIcon = (props) => {
+const ButtonIcon = props => {
 	const {
 		style,
 		onPress,
@@ -18,7 +18,8 @@ const ButtonIcon = (props) => {
 
 	return (
 		<View style={style}>
-			<TouchableWithoutFeedback onPress={_onPress}>
+			<TouchableWithoutFeedback onPress={_onPress}
+				hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>
 				<Image source={source} style={{width, height}} />
 			</TouchableWithoutFeedback>
 		</View>
