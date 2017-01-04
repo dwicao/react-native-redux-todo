@@ -8,8 +8,9 @@
 ## Technology Stack
 * React Native
 * Redux
-* Redux-Persist
-* CodePush 
+* CodePush
+* redux-persist
+* react-native-router-flux 
 
 ## Install at local
 Open Terminal, then type command:  
