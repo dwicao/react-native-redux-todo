@@ -1,3 +1,4 @@
+import codePush from "react-native-code-push";
 import React, { Component } from 'react';
 import { AppRegistry, AsyncStorage } from 'react-native';
 import {Provider} from 'react-redux';
@@ -9,6 +10,10 @@ const store = configureStore();
 persistStore(store, {storage: AsyncStorage});
 
 class todo extends Component {
+  componentDidMount() {
+    codePush.sync({installMode: codePush.InstallMode.IMMEDIATE});
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -18,4 +23,4 @@ class todo extends Component {
   }
 }
 
-AppRegistry.registerComponent('todo', () => todo);
+AppRegistry.registerComponent( 'todo', () => codePush(todo) );
