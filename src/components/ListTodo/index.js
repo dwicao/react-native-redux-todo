@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Actions, ActionConst } from 'react-native-router-flux';
 import Dimensions from 'Dimensions';
 import {
   ScrollView,
@@ -46,9 +47,12 @@ const TodoList = props => {
   );
 
   const _leftOnPress = (id) => (event) => actions.toggleTodo(id);
-  const _textOnPress = (id) => (event) => actions.toggleEditTodo(id);
   const _rightOnPress = (id) => (event) => actions.toggleStarTodo(id);
   const _onDelete = (id) => (event) => actions.removeTodo(id);
+  const _textOnPress = (id) => (event) => {
+    actions.toggleEditTodo(id);
+    Actions.editScreen({type: ActionConst.RESET});
+  }
 
   return (
     <View style={styles.container}>

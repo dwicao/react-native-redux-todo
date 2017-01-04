@@ -8,7 +8,7 @@ import {
 
 import ButtonFilter from '../Buttons/ButtonFilter';
 
-const VisibilityFilter = props => {
+const Visibility = props => {
 	const {
 		todos,
 		actions,
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default VisibilityFilter;
+export default Visibility;

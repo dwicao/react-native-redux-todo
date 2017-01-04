@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as todoActions from '../actions/todoActions';
+import * as todoActions from '../../actions/todoActions';
 import {
 	View,
 	Text,
@@ -9,10 +9,10 @@ import {
 	StatusBar,
 } from 'react-native';
 
-import Wallpaper from './Wallpaper';
-import AddTodo from './AddTodo';
-import Visibility from './Visibility';
-import ListTodo from './ListTodo';
+import Wallpaper from '../Wallpaper';
+import AddTodo from '../AddTodo';
+import Visibility from '../Visibility';
+import ListTodo from '../ListTodo';
 
 class Main extends Component {
 	render() {
