@@ -26,7 +26,7 @@ const EditTodo = props => {
 		Actions.mainScreen({type: ActionConst.RESET});
 	}
 
-	const _onChangeText = text => textInput = text;
+	const _onChangeText = value => textInput = value;
 
 	return (
 		<View style={styles.container}>
@@ -34,36 +34,45 @@ const EditTodo = props => {
 				<TextInput style={styles.textInput}
 					onChangeText={_onChangeText}
 					ref={el => textInput = el}
-					multiLine={true}>
-					<Text style={styles.text}>{text}</Text>
+					multiline={true}>
+						<Text style={styles.text}>{text}</Text>
 				</TextInput>
 			</View>
 			<View style={styles.btnWrapper}>
 				<TouchableOpacity onPress={_onPress}
 					activeOpacity={0.5}
 					style={styles.btn}>
-					<Image source={backIcon} style={styles.image}/>
+						<Image source={backIcon} style={styles.image}/>
 				</TouchableOpacity>
 			</View>
 		</View>
 	);
 }
 
+EditTodo.propTypes = {
+	todos: PropTypes.array,
+	actions: PropTypes.object.isRequired,
+	id: PropTypes.string.isRequired,
+	text: PropTypes.string.isRequired,
+};
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
 	textInputWrapper: {
-		margin: 20,
+		marginTop: 20,
+		marginHorizontal: 15,
 	},
 	textInput: {
+		height: 100,
+		paddingHorizontal: 10,
 		backgroundColor: 'rgba(0, 0, 0, 0.5)',
 	},
 	text: {
 		color: 'white',
 	},
 	btnWrapper: {
-		flex: 1,
 		alignItems: 'flex-end',
 		justifyContent: 'flex-end',
 	},
