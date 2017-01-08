@@ -15,11 +15,6 @@ const Visibility = props => {
 		visibilityFilter,
 	} = props;
 
-	const _ViewAll = () => actions.setVisibilityFilter('SHOW_ALL');
-	const _Active = () => actions.setVisibilityFilter('SHOW_ACTIVE');
-	const _Completed = () => actions.setVisibilityFilter('SHOW_COMPLETED');
-	const _Favorite = () => actions.setVisibilityFilter('SHOW_FAVORITE');
-
 	return (
 		<View style={styles.container}>
 			<ButtonFilter filter='SHOW_ALL'

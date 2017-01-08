@@ -6,7 +6,7 @@ import {
 	View,
 	Text,
 	StyleSheet,
-	StatusBar,
+	Platform,
 } from 'react-native';
 
 import Wallpaper from '../Wallpaper';
@@ -17,28 +17,23 @@ import ListTodo from '../ListTodo';
 class Main extends Component {
 	render() {
 		return (
-			<View style={styles.bottomLayer}>
-				<View style={styles.container}>
-					<StatusBar translucent={true} />
-					<Wallpaper>
-						<AddTodo {...this.props}/>
-						<Visibility {...this.props} />
-						<ListTodo {...this.props} />
-					</Wallpaper>
-				</View>
+			<View style={styles.container}>
+				<Wallpaper>
+					<AddTodo {...this.props}/>
+					<Visibility {...this.props} />
+					<ListTodo {...this.props} />
+				</Wallpaper>
 			</View>
 		);
 	}
 }
 
+const statusbarTop = (Platform.OS === 'ios') ? 20 : 0;
+
 const styles = StyleSheet.create({
-	bottomLayer: {
-		flex: 1,
-		backgroundColor: 'white',
-	},
 	container: {
 		flex: 1,
-		marginTop: 20,
+		top: statusbarTop,
 	},
 });
 

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Actions, ActionConst } from 'react-native-router-flux';
-import Dimensions from 'Dimensions';
 import {
   ScrollView,
   StyleSheet,
@@ -75,8 +74,6 @@ const TodoList = props => {
     </View>
   );
 };
-
-const DEVICE_WIDTH = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {

@@ -5,10 +5,10 @@ import { Actions, ActionConst } from 'react-native-router-flux';
 import * as todoActions from '../../actions/todoActions';
 import {
 	StyleSheet,
-	StatusBar,
 	View,
 	Text,
 	TouchableOpacity,
+	Platform,
 } from 'react-native';
 
 import Wallpaper from '../Wallpaper';
@@ -18,7 +18,6 @@ class EditScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<StatusBar translucent={true} />
 				<Wallpaper>
 					<EditTodo {...this.props}/>
 				</Wallpaper>
@@ -27,10 +26,12 @@ class EditScreen extends Component {
 	}
 }
 
+const statusbarTop = (Platform.OS === 'ios') ? 20 : 0;
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		marginTop: 20,
+		top: statusbarTop,
 	}
 });
 
