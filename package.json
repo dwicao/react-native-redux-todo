@@ -18,6 +18,8 @@
     "android-clean": "cd android && ./gradlew clean",
     "android-build-debug": "cd android/ && ./gradlew assembleDebug",
     "android-signkey": "keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000",
+    "android-zipalign": "cd android/app/build/outputs/apk/ && zipalign -v 4 app-release-unsigned.apk todo.apk",
+    "android-run-release": "react-native run-android --configuration=release",
     "android-release": "cd android && ./gradlew assembleRelease",
     "android-signer": "cd android/app/build/outputs/apk/ && jarsigner -verbose -keystore ~/.android/debug.keystore -storepass android -keypass android app-release-unsigned.apk androiddebugkey",
     "android-dev": "source ~/.bashrc && adb uninstall com.dwicao.todo && react-native run-android && adb reverse tcp:8081 tcp:8081 && react-native start",
