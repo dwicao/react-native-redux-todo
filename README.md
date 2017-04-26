@@ -3,7 +3,7 @@
 ![demo](https://raw.githubusercontent.com/dwicao/react-native-redux-todo/master/demo.gif) 
 
 ## Download
-[Todo.apk](https://github.com/dwicao/react-native-redux-todo/releases/download/v1.0/todo.apk)
+[![Google Play](https://raw.githubusercontent.com/dwicao/static/master/img/gplay.png)](https://play.google.com/store/apps/details?id=com.dwicao.todo)
 
 ## Technology Stack
 * React Native
